@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html class="h-full">
+<head>
+    <title>Shield Proxy</title>
+    <link href="./output.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-gray-100 h-full flex overflow-hidden font-sans select-none">
+
+    <aside class="w-64 bg-gray-800 border-r border-gray-700 flex flex-col">
+        <div class="p-6 border-b border-gray-700">
+            <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-teal-400">
+                Shield Proxy
+            </h1>
+            <div class="mt-4 flex items-center space-x-2">
+                <div id="statusDot" class="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)] transition-colors duration-300"></div>
+                <span id="statusText" class="text-xs text-gray-400 uppercase tracking-wide font-semibold">Stopped</span>
+            </div>
+        </div>
+
+        <div class="p-6 space-y-4">
+            <div>
+                <label class="block text-xs font-medium text-gray-400 mb-1">PORT</label>
+                <input type="number" id="portInput" value="8080" 
+                    class="w-full bg-gray-900 border border-gray-600 rounded px-3 py-2 text-sm focus:outline-none focus:border-blue-500 transition-colors text-white font-mono">
+            </div>
+            
+            <button id="toggleBtn" 
+                class="w-full py-2.5 rounded-lg font-medium text-sm text-white bg-blue-600 hover:bg-blue-500 transition-all shadow-lg shadow-blue-900/20 active:scale-95">
+                Start Server
+            </button>
+        </div>
+
+        <div class="flex-1 flex flex-col p-6 overflow-hidden">
+            <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Blocked Domains</h3>
+            
+            <div class="flex space-x-2 mb-3">
+                <input type="text" id="blockInput" placeholder="ex: facebook.com" 
+                    class="flex-1 bg-gray-900 border-none rounded px-3 py-1.5 text-xs text-white focus:ring-1 focus:ring-blue-500">
+                <button id="addBlockBtn" class="bg-gray-700 hover:bg-gray-600 text-white px-3 rounded text-xs transition-colors">+</button>
+            </div>
+
+            <div id="blockList" class="flex-1 overflow-y-auto space-y-2 pr-1">
+                </div>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col bg-gray-900/95 relative">
+        <div class="h-8 w-full drag-region"></div> <div class="px-6 pb-2 flex justify-between items-end border-b border-gray-800">
+            <h2 class="text-lg font-medium text-gray-300">Traffic Log</h2>
+            <button id="clearLogs" class="text-xs text-gray-500 hover:text-gray-300 transition-colors">Clear</button>
+        </div>
+
+        <div id="logs" class="flex-1 overflow-y-auto p-6 font-mono text-xs space-y-1">
+            <div class="text-gray-600 italic">Waiting for requests...</div>
+        </div>
+    </main>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
